@@ -123,6 +123,49 @@ namespace Modelos_De_Examen
             textBox7.Text = string.Concat(m1.frecuencia(int.Parse(textBox1.Text)));
         }
 
+        private void preguntaExam1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m1.pregunta1Exam();
+            textBox6.Text = m1.descargar();
+        }
+
+        private void ordenExamenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m1.ordenExam();
+            textBox6.Text = m1.descargar();
+        }
+
+        private void preguntaExam2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m1.pregunta2Exam();
+            textBox6.Text = m1.descargar();
+        }
+
+        private void pregunta11ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            m1.ExamOrdenTriangular();
+            textBox6.Text = m1.descargar();
+        }
+
+        private void pregunta12ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m1.ordenSenozoidalTriangular();
+            textBox6.Text = m1.descargar();
+        }
+
+        private void elemRepetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox7.Text = string.Concat( m1.elemRepet12(int.Parse(textBox1.Text)));
+
+        }
+
+        private void pregunta13ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m1.columAmplia();
+            m1.ordenFilas();
+            textBox6.Text = m1.descargar();
+        }
+
         public Form1()
         {
             InitializeComponent();

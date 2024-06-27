@@ -23,9 +23,9 @@ namespace Modelos_De_Examen
         {
             Random r = new Random();
             this.fila = nfil; this.colum = ncol;
-            for(int fil = 1; fil <= this.fila; fil++)
+            for (int fil = 1; fil <= this.fila; fil++)
             {
-                for(int col = 1; col <= this.colum; col++)
+                for (int col = 1; col <= this.colum; col++)
                 {
                     matriz[fil, col] = r.Next(min, max + 1);
                 }
@@ -34,9 +34,9 @@ namespace Modelos_De_Examen
         public string descargar()
         {
             string sp = "";
-            for(int fil = 1; fil <= this.fila; fil++)
+            for (int fil = 1; fil <= this.fila; fil++)
             {
-                for(int col =1; col <= this.colum; col++)
+                for (int col = 1; col <= this.colum; col++)
                 {
                     sp = sp + matriz[fil, col] + "\t";
                 }
@@ -48,7 +48,7 @@ namespace Modelos_De_Examen
         // Examenes de parciales
 
         // funcion auxiliar para el orden senozoidal
-       public void intercambio(int fil1, int col1, int fil2, int col2)
+        public void intercambio(int fil1, int col1, int fil2, int col2)
         {
             int auxi = matriz[fil1, col1];
             matriz[fil1, col1] = matriz[fil2, col2];
@@ -58,19 +58,19 @@ namespace Modelos_De_Examen
         public void ordensenozoidal()
         {
             int idx;
-            for(int fil1 = this.fila; fil1 >= 1; fil1--)
+            for (int fil1 = this.fila; fil1 >= 1; fil1--)
             {
-                for(int col1 = this.colum; col1 >= 1; col1--)
+                for (int col1 = this.colum; col1 >= 1; col1--)
                 {
-                    for(int fil2 = fil1; fil2 >= 1; fil2--)
+                    for (int fil2 = fil1; fil2 >= 1; fil2--)
                     {
                         if (fil2 == fil1)
                             idx = col1;
                         else
                             idx = this.colum;
-                        for(int col2 = idx; col2 >=1; col2--)
+                        for (int col2 = idx; col2 >= 1; col2--)
                         {
-                            if(matriz[fil2, col2] < matriz[fil1, col1])
+                            if (matriz[fil2, col2] < matriz[fil1, col1])
                             {
                                 this.intercambio(fil2, col2, fil1, col1);
                             }
@@ -85,15 +85,15 @@ namespace Modelos_De_Examen
         {
             this.ordensenozoidal();
             bool change = true;
-            for(int fil1 = this.fila; fil1 >= 1; fil1--)
+            for (int fil1 = this.fila; fil1 >= 1; fil1--)
             {
                 if (change == true)
                 {
-                    for(int col1 = this.colum; col1 >= 1; col1--)
+                    for (int col1 = this.colum; col1 >= 1; col1--)
                     {
-                        for(int col2 = col1; col2 >= 1; col2--)
+                        for (int col2 = col1; col2 >= 1; col2--)
                         {
-                            if(matriz[fil1, col2] < matriz[fil1, col1])
+                            if (matriz[fil1, col2] < matriz[fil1, col1])
                             {
                                 this.intercambio(fil1, col2, fil1, col1);
                             }
@@ -124,21 +124,21 @@ namespace Modelos_De_Examen
             numEntero number2 = new numEntero();
 
             int idx, lin, num;
-            for(int col1 = 1; col1 < this.colum; col1++)
+            for (int col1 = 1; col1 < this.colum; col1++)
             {
-                for(int fil1 = this.fila - col1; fil1 >= 1; fil1--)
+                for (int fil1 = this.fila - col1; fil1 >= 1; fil1--)
                 {
-                    for(int col2 = col1; col2 < this.colum; col2++)
+                    for (int col2 = col1; col2 < this.colum; col2++)
                     {
                         if (col2 == col1)
                             idx = fil1;
                         else
                             idx = this.fila - col2;
-                        for(int fil2 = idx; fil2 >=1; fil2--)
+                        for (int fil2 = idx; fil2 >= 1; fil2--)
                         {
                             number1.cargar(matriz[fil2, col2]);
                             number2.cargar(matriz[fil1, col1]);
-                            if( number1.espar() && !number2.espar() ||
+                            if (number1.espar() && !number2.espar() ||
                                 number1.espar() && number2.espar() && (matriz[fil2, col2] < matriz[fil1, col1]) ||
                                 !number1.espar() && !number2.espar() && (matriz[fil2, col2] < matriz[fil1, col1]))
                             {
@@ -154,20 +154,20 @@ namespace Modelos_De_Examen
         public void pregunta3()
         {
             int idx, lin = this.colum, num;
-            for(int fil1 = 2; fil1 <= this.fila; fil1++)
+            for (int fil1 = 2; fil1 <= this.fila; fil1++)
             {
-                for(int col1 = lin; col1 <= this.colum; col1++)
+                for (int col1 = lin; col1 <= this.colum; col1++)
                 {
                     num = lin;
-                    for(int fil2 = fil1; fil2 <= this.fila; fil2++)
+                    for (int fil2 = fil1; fil2 <= this.fila; fil2++)
                     {
                         if (fil2 == fil1)
                             idx = col1;
                         else
                             idx = num;
-                        for(int col2 = idx; col2 <= this.colum; col2++)
+                        for (int col2 = idx; col2 <= this.colum; col2++)
                         {
-                            if(matriz[fil2, col2] < matriz[fil1, col1])
+                            if (matriz[fil2, col2] < matriz[fil1, col1])
                             {
                                 this.intercambio(fil2, col2, fil1, col1);
                             }
@@ -183,18 +183,18 @@ namespace Modelos_De_Examen
         // funcion 1
         public int numelem(int numfil)
         {
-            int frecu = 1, num;
-            for(int col1 = 1; col1 < this.colum; col1++)
+            int frecu = 0, num;
+            for (int col1 = 1; col1 <= this.colum; col1++)
             {
                 num = 0;
-                for(int col2 = col1 + 1; col2 <= this.colum; col2++)
+                for (int col2 = col1; col2 <= this.colum; col2++)
                 {
-                    if(matriz[numfil, col2] == matriz[numfil , col1])
+                    if (matriz[numfil, col2] == matriz[numfil, col1])
                     {
                         num++;
                     }
                 }
-                if(num == 0)
+                if (num == 1)
                 {
                     frecu++;
                 }
@@ -213,11 +213,11 @@ namespace Modelos_De_Examen
         // funcion 3
         public void pregunta4()
         {
-            for(int filpos = 1; filpos < this.fila; filpos++)
+            for (int filpos = 1; filpos < this.fila; filpos++)
             {
-                for(int fildesp = filpos + 1; fildesp <= this.fila; fildesp++)
+                for (int fildesp = filpos + 1; fildesp <= this.fila; fildesp++)
                 {
-                    if(numelem(fildesp) < numelem(filpos))
+                    if (numelem(fildesp) < numelem(filpos))
                     {
                         this.cambiofilas(fildesp, filpos);
                     }
@@ -232,10 +232,10 @@ namespace Modelos_De_Examen
         {
             numEntero number1 = new numEntero();
             int conta = 0;
-            for(int col1 = 1; col1 <= this.colum; col1++)
+            for (int col1 = 1; col1 <= this.colum; col1++)
             {
                 number1.cargar(matriz[numfila, col1]);
-                if(number1.esPrimo() == true)
+                if (number1.esPrimo() == true)
                 {
                     conta++;
                 }
@@ -246,7 +246,7 @@ namespace Modelos_De_Examen
         // funcio 2
         public void cambiofilas2(int fil1, int fil2)
         {
-            for(int col1 = 1; col1 <= this.colum; col1++)
+            for (int col1 = 1; col1 <= this.colum; col1++)
             {
                 this.intercambio(fil1, col1, fil2, col1);
             }
@@ -255,11 +255,11 @@ namespace Modelos_De_Examen
         // funcion 3
         public void pregunta5()
         {
-            for(int fil1 = 1; fil1 < this.fila; fil1++)
+            for (int fil1 = 1; fil1 < this.fila; fil1++)
             {
                 for (int fil2 = fil1 + 1; fil2 <= this.fila; fil2++)
                 {
-                    if(numPrimo(fil2) < numPrimo(fil1))
+                    if (numPrimo(fil2) < numPrimo(fil1))
                     {
                         this.cambiofilas2(fil2, fil1);
                     }
@@ -271,19 +271,19 @@ namespace Modelos_De_Examen
         public void pregunta6()
         {
             int idx;
-            for(int col1 = 1; col1 < this.colum; col1++)
+            for (int col1 = 1; col1 < this.colum; col1++)
             {
-                for(int fil1 = col1 + 1; fil1 <= this.fila; fil1++)
+                for (int fil1 = col1 + 1; fil1 <= this.fila; fil1++)
                 {
-                    for(int col2 = col1; col2 < this.colum; col2++)
+                    for (int col2 = col1; col2 < this.colum; col2++)
                     {
                         if (col2 == col1)
                             idx = fil1;
                         else
                             idx = col2 + 1;
-                        for(int fil2 = idx; fil2 <= this.fila; fil2++)
+                        for (int fil2 = idx; fil2 <= this.fila; fil2++)
                         {
-                            if(matriz[fil2, col2] > matriz[fil1, col1])
+                            if (matriz[fil2, col2] > matriz[fil1, col1])
                             {
                                 this.intercambio(fil2, col2, fil1, col1);
                             }
@@ -298,17 +298,17 @@ namespace Modelos_De_Examen
         public int numElemDifer(int numfil)
         {
             int num, frecu = 0;
-            for(int col1 = 1; col1 <= this.colum; col1++)
+            for (int col1 = 1; col1 <= this.colum; col1++)
             {
                 num = 0;
-                for(int col2 = col1 + 1; col2 <= this.colum; col2++)
+                for (int col2 = col1 + 1; col2 <= this.colum; col2++)
                 {
-                    if(matriz[numfil, col2] == matriz[numfil, col1])
+                    if (matriz[numfil, col2] == matriz[numfil, col1])
                     {
                         num++;
                     }
                 }
-                if(num == 0)
+                if (num == 0)
                 {
                     frecu++;
                 }
@@ -319,7 +319,7 @@ namespace Modelos_De_Examen
         // funcion 2
         public void cambioFilas3(int fil1, int fil2)
         {
-            for(int col1 = 1; col1 <= this.colum; col1++)
+            for (int col1 = 1; col1 <= this.colum; col1++)
             {
                 this.intercambio(fil1, col1, fil2, col1);
             }
@@ -328,11 +328,11 @@ namespace Modelos_De_Examen
         // funcion 3
         public void pregunta7()
         {
-            for(int fil1 = 2; fil1 < this.fila; fil1++)
+            for (int fil1 = 2; fil1 < this.fila; fil1++)
             {
-                for(int fil2 = fil1 + 1; fil2 < this.fila; fil2++)
+                for (int fil2 = fil1 + 1; fil2 < this.fila; fil2++)
                 {
-                    if(numElemDifer(fil2) < numElemDifer(fil1))
+                    if (numElemDifer(fil2) < numElemDifer(fil1))
                     {
                         this.cambioFilas3(fil2, fil1);
                     }
@@ -347,12 +347,12 @@ namespace Modelos_De_Examen
             numEntero number2 = new numEntero();
             bool change = true;
 
-            int idx, lin =this.fila, num;
-            for(int col1 = 2; col1 <= this.colum; col1++)
+            int idx, lin = this.fila, num;
+            for (int col1 = 2; col1 <= this.colum; col1++)
             {
-                for(int fil1 = lin; fil1 <= this.fila; fil1++)
+                for (int fil1 = lin; fil1 <= this.fila; fil1++)
                 {
-                    if(change == true)
+                    if (change == true)
                     {
                         num = lin;
                         for (int col2 = col1; col2 <= this.colum; col2++)
@@ -411,27 +411,27 @@ namespace Modelos_De_Examen
         public int elemFrecuCol(int numcol)
         {
             int frecu = 1, num;
-            for(int fil1 = 1; fil1 < this.fila; fil1++)
+            for (int fil1 = 1; fil1 < this.fila; fil1++)
             {
                 num = 0;
-                for(int fil2 = fil1 + 1; fil2 <= this.fila; fil2++)
+                for (int fil2 = fil1 + 1; fil2 <= this.fila; fil2++)
                 {
-                    if(matriz[fil2, numcol] == matriz[fil1, numcol])
+                    if (matriz[fil2, numcol] == matriz[fil1, numcol])
                     {
                         num++;
                     }
                 }
-                if(num == 0)
+                if (num == 0)
                 {
                     frecu++;
                 }
             }
             return frecu;
         }
-        // funicon 2
+        // funicon 2 = Es llamado en el form1;
         public void filamplia()
         {
-            for(int col1 = 1; col1 <= this.colum; col1++)
+            for (int col1 = 1; col1 <= this.colum; col1++)
             {
                 matriz[this.fila + 1, col1] = elemFrecuCol(col1);
             }
@@ -441,20 +441,20 @@ namespace Modelos_De_Examen
         // funcion 3
         public void cambioCols(int col1, int col2)
         {
-            for(int fil1 = 1; fil1 <= this.fila; fil1++)
+            for (int fil1 = 1; fil1 <= this.fila; fil1++)
             {
                 this.intercambio(fil1, col1, fil1, col2);
             }
         }
 
-        // funcion 4
+        // funcion 4 = Es llamado en el form1;
         public void pregunta9()
         {
-            for(int col1 = 1; col1 < this.colum; col1++)
+            for (int col1 = 1; col1 < this.colum; col1++)
             {
-                for(int col2 = col1 + 1; col2 <= this.colum; col2++)
+                for (int col2 = col1 + 1; col2 <= this.colum; col2++)
                 {
-                    if(matriz[this.fila, col2] < matriz[this.fila, col1])
+                    if (matriz[this.fila, col2] < matriz[this.fila, col1])
                     {
                         this.cambioCols(col2, col1);
                     }
@@ -466,21 +466,21 @@ namespace Modelos_De_Examen
         // pregunta 10
         public void pregunta10()
         {
-            int idx, num, lin = 2 ;
-            for(int col1 = this.colum; col1 >= 2; col1--)
+            int idx, num, lin = 2;
+            for (int col1 = this.colum; col1 >= 2; col1--)
             {
-                for(int fil1 = lin; fil1 <= this.fila; fil1++)
+                for (int fil1 = lin; fil1 <= this.fila; fil1++)
                 {
                     num = lin;
-                    for(int col2 = col1; col2 >=2; col2--)
+                    for (int col2 = col1; col2 >= 2; col2--)
                     {
                         if (col2 == col1)
                             idx = fil1;
                         else
                             idx = num;
-                        for(int fil2 = idx; fil2 <= this.fila; fil2++)
+                        for (int fil2 = idx; fil2 <= this.fila; fil2++)
                         {
-                            if(matriz[fil2, col2] < matriz[fil1, col1])
+                            if (matriz[fil2, col2] < matriz[fil1, col1])
                             {
                                 this.intercambio(fil2, col2, fil1, col1);
                             }
@@ -497,18 +497,18 @@ namespace Modelos_De_Examen
         public int elemento(int numfil)
         {
             int frecu, mayor = 0, numele, numfrecu = 0;
-            for(int col1 = 1; col1 <= this.colum; col1++)
+            for (int col1 = 1; col1 <= this.colum; col1++)
             {
                 frecu = 0;
                 numele = matriz[numfil, col1];
                 for (int col2 = col1; col2 <= this.colum; col2++)
                 {
-                    if(matriz[numfil, col2] == numele)
+                    if (matriz[numfil, col2] == numele)
                     {
                         frecu++;
                     }
                 }
-                if(frecu > mayor && frecu != 1)
+                if (frecu > mayor && frecu != 1)
                 {
                     mayor = frecu;
                     numfrecu = numele;
@@ -544,12 +544,246 @@ namespace Modelos_De_Examen
         public void pregunta11()
         {
             int maxcol = 1, maxcol2 = maxcol + 1;
-            for(int fil1 = 1; fil1 <= this.fila; fil1++)
+            for (int fil1 = 1; fil1 <= this.fila; fil1++)
             {
                 matriz[fil1, this.colum + maxcol] = this.elemento(fil1);
                 matriz[fil1, this.colum + maxcol2] = this.frecuencia(fil1);
             }
             this.colum = this.colum + maxcol2;
+        }
+
+        // Primera pregunta del examen del dia 05/06/24
+        // encontrar la frecuencia de las filas y esa frecuencia de elemento agregarlas a la columna
+
+        public int frecuFilas(int numfila)
+        {
+            int mayor = 0, elemen, eleMayor = 0, frecu;
+            for(int col1 = 1; col1 <= this.colum; col1++)
+            {
+                frecu = 0;
+                elemen = matriz[numfila, col1];
+                for(int col2 = 1; col2 <= this.colum; col2++)
+                {
+                    if(matriz[numfila, col2] == elemen)
+                    {
+                        frecu++;
+                    }
+                }
+                if(frecu > mayor && frecu != 1)
+                {
+                    mayor = frecu;
+                    eleMayor = elemen;
+                }
+            }
+            return eleMayor;
+        }
+
+        public void pregunta1Exam()
+        {
+            for(int fil1 = 1; fil1 <= this.fila; fil1++)
+            {
+                matriz[fil1, this.colum + 1] = this.frecuFilas(fil1);
+            }
+            this.colum++;
+        }
+
+        // Segunda pregunta del examen del dia 05/06/24
+        // Ordenar en forma senozoidal por filas 
+
+        public void intercambioExam(int fil1, int col1, int fil2, int col2)
+        {
+            int auxi = matriz[fil1, col1];
+            matriz[fil1, col1] = matriz[fil2, col2];
+            matriz[fil2, col2] = auxi;
+        }
+
+        public void ordenExam()
+        {
+            int idx;
+            for(int fil1 = this.fila; fil1 >= 1; fil1--)
+            {
+                for(int col1 = this.colum; col1 >= 1; col1--)
+                {
+                    for(int fil2 = fil1; fil2 >= 1; fil2--)
+                    {
+                        if (fil2 == fil1)
+                            idx = col1;
+                        else
+                            idx = this.colum;
+                        for(int col2 = idx; col2 >= 1; col2--)
+                        {
+                            if(matriz[fil2, col2] < matriz[fil1, col1])
+                            {
+                                this.intercambioExam(fil1, col1, fil2, col2);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void pregunta2Exam()
+        {
+            this.ordenExam();
+            bool change = true;
+            for(int fil1 = this.fila; fil1 >= 1; fil1--)
+            {
+                if(change == true)
+                {
+                    for(int col1 = this.colum; col1 >= 1; col1--)
+                    {
+                        for(int col2 = this.colum; col2 >= 1; col2--)
+                        {
+                            if(matriz[fil1, col2] > matriz[fil1, col1])
+                            {
+                                this.intercambioExam(fil1, col2, fil1, col1);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for (int col1 = this.colum; col1 >= 1; col1--)
+                    {
+                        for (int col2 = this.colum; col2 >= 1; col2--)
+                        {
+                            if (matriz[fil1, col2] < matriz[fil1, col1])
+                            {
+                                this.intercambioExam(fil1, col2, fil1, col1);
+                            }
+                        }
+                    }
+                }
+                change = !change;
+            }
+        }
+
+        // Examen:
+        // ordenar la triangular en forma senozoidal:
+
+        public void cambioTriangular(int fil1, int col1, int fil2, int col2)
+        {
+            int auxi = matriz[fil1, col1];
+            matriz[fil1, col1] = matriz[fil2, col2];
+            matriz[fil2, col2] = auxi;
+        }
+        public void ExamOrdenTriangular()
+        {
+            int idx, fun = this.fila, n;
+            for(int col1 = 2; col1 <= this.colum; col1++)
+            {
+                for(int fil1 = this.fila; fil1 >= fun; fil1--)
+                {
+                    n = fun;
+                    for(int col2 = col1; col2 <= this.colum; col2++)
+                    {
+                        if (col2 == col1)
+                            idx = fil1;
+                        else
+                            idx = this.fila;
+                        for(int fil2 = idx; fil2 >= n; fil2--)
+                        {
+                            if(matriz[fil2, col2] < matriz[fil1, col1])
+                            {
+                                cambioTriangular(fil2, col2, fil1, col1);
+                            }
+                        }
+                        n--;
+                    }
+                }
+                fun--;
+            }
+        }
+
+        public void ordenSenozoidalTriangular()
+        {
+            this.ExamOrdenTriangular();
+            bool change = true; int fun = this.fila, num;
+            for(int col1 = 2; col1 <= this.colum; col1++)
+            {
+                num = fun;
+                if(change == true)
+                {
+                    for(int fil1 = this.fila; fil1 >= num; fil1--)
+                    {
+                        for(int fil2 = this.fila; fil2 >= num; fil2--)
+                        {
+                            if(matriz[fil2, col1] < matriz[fil1, col1])
+                            {
+                                cambioTriangular(fil2, col1, fil1, col1);
+                            }
+                        }
+                    }
+              
+                }  
+                else
+                {
+                    for (int fil1 = this.fila; fil1 >= num; fil1--)
+                    {
+                        for (int fil2 = this.fila; fil2 >= num; fil2--)
+                        {
+                            if (matriz[fil2, col1] > matriz[fil1, col1])
+                            {
+                                cambioTriangular(fil2, col1, fil1, col1);
+                            }
+                        }
+                    }
+                }
+                fun--;
+                change = !change;
+            }
+        }
+
+        // Ordenar las filas de acuerdo al elemento mas repetido (menor a mayor)
+        public int elemRepet12(int numfil)
+        {
+            int frecu, number, elemMay = 0, mayor = 0;
+            for(int col1 = 1; col1 <= this.colum; col1++)
+            {
+                frecu = 0;
+                number = matriz[numfil, col1];
+                for(int col2 = col1; col2 <= this.colum; col2++)
+                {
+                    if(matriz[numfil, col2] == number)
+                    {
+                        frecu++;
+                    }
+                }
+                if(frecu > mayor && frecu != 1)
+                {
+                    mayor = frecu;
+                    elemMay = number;
+                }
+            }
+            return elemMay;
+        }
+
+        public void interCambioFilas(int fil1, int fil2)
+        {
+            for(int col1 = 1; col1 <= this.colum; col1++)
+            {
+                cambioTriangular(fil1, col1, fil2, col1);
+            }
+        }
+
+        public void columAmplia()
+        {
+            for(int fil1 = 1; fil1 <= this.fila; fil1++)
+            {
+                matriz[fil1, this.colum + 1] = elemRepet12(fil1);
+            }
+            this.colum++;
+        }
+        public void ordenFilas()
+        {
+            for (int fil1 = 1; fil1 <= this.fila; fil1++)
+            {
+                for (int fil2 = fil1 + 1; fil2 <= this.fila; fil2++)
+                {
+                    if (matriz[fil2, this.colum] < matriz[fil1, this.colum])
+                        interCambioFilas(fil2, fil1);
+                }
+            }
         }
     }
 }
